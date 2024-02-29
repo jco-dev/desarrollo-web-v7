@@ -1,3 +1,20 @@
+<?php
+
+$rutas = ['login', 'perfil', 'pregunta', 'preguntas', 'registro', 'respuesta', 'salir', 'usuarios'];
+
+$ruta = 'preguntas';
+
+if (isset($_GET['ruta'])) {
+  $ruta = $_GET['ruta'];
+}
+
+
+$clase = '';
+if ($ruta == 'login' || $ruta == 'registro')
+  $clase = 'login-page';
+
+
+?>
 
 
 <!DOCTYPE html>
@@ -21,13 +38,28 @@
 
 </head>
 
-<body class="hold-transition layout-top-nav" >
+<body class="hold-transition layout-top-nav <?= $clase ?>">
 
- <?php
+  <?php
+  if ($ruta != 'login' && $ruta != 'registro')
     include_once 'header.php';
-    include_once 'modulos/preguntas.php';
+  ?>
+
+  <?php
+
+  if (in_array($ruta, $rutas)) {
+    include_once "modulos/$ruta.php";
+  } else {
+    include_once "modulos/404.php";
+  }
+  ?>
+
+
+  <?php
+  if ($ruta != 'login' && $ruta != 'registro')
     include_once 'footer.php';
- ?>
+  ?>
+
 
 </body>
 

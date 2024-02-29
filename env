@@ -1,0 +1,7 @@
+BASE_URL=""
+
+# BASE DE DATOS
+HOST=''
+DB=''
+USER=''
+PASSWORD=''

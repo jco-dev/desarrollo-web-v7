@@ -1,6 +1,15 @@
 <?php
 
+require_once 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createMutable(__DIR__);
+$dotenv->load();
+
 require_once 'controladores/VistaPrincipal.php';
+require_once 'controladores/Pregunta.php';
+
+
+require_once 'modelos/PreguntaModel.php';
 
 
 $vista = new VistaPrincipal();

@@ -1,3 +1,9 @@
+<?php
+    $preguntas = Pregunta::listarPreguntas('pregunta', null, null);
+    var_dump($preguntas);
+
+?>
+
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container">
