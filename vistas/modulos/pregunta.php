@@ -50,6 +50,11 @@
                                 </button>
                             </div>
 
+                            <?php
+                                $guardar = new Pregunta();
+                                $guardar->guardarPregunta();
+                            ?>
+
                         </form>
                     </div>
                 </div>

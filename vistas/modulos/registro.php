@@ -63,6 +63,11 @@
                     </div>
                 </div>
 
+                <?php
+                    $usuario = new Usuario();
+                    $usuario->registroUsuario();
+                ?>
+
             </form>
 
             <div class="text-center mt-3">

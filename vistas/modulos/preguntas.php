@@ -1,7 +1,5 @@
 <?php
     $preguntas = Pregunta::listarPreguntas('pregunta', null, null);
-    var_dump($preguntas);
-
 ?>
 
 <div class="content-wrapper">
@@ -30,56 +28,25 @@
                             <div class="tab-content">
                                 <div class="active tab-pane" id="activity ">
 
+
+                                <?php foreach ($preguntas as $key => $pregunta): ?>
                                     <div class="post clearfix">
                                         <div class="user-block">
-                                            <img class="img-circle img-bordered-sm" src="vistas/dist/images/user.png" alt="Imagen de usuario">
+                                            <img class="img-circle img-bordered-sm" src="<?= $_ENV['BASE_URL']?>vistas/dist/images/user.png" alt="Imagen de usuario">
                                             <span class="username">
-                                                <a href="respuesta.html">titulo</a>
-                                                <p>Nombre Usuario</p>
+                                                <a href="<?= $_ENV['BASE_URL']?>respuesta/<?= $pregunta['id_pregunta'] ?>"><?= $pregunta['titulo'] ?></a>
+                                                <p><?= $pregunta['nombre'] . " ". $pregunta['paterno'] ?></p>
                                             </span>
                                             <span class="description">Compartido públicamente - 15/09/2022</span>
                                         </div>
                                         <!-- /.user-block -->
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, iusto dolorum totam molestias necessitatibus cupiditate tempora, labore mollitia id deserunt inventore placeat saepe. Vel ipsum consequuntur esse ratione accusantium molestiae.
+                                            <?= $pregunta['descripcion'] ?>
                                         </p>
 
                                     </div>
-
-                                    <div class="post clearfix">
-                                        <div class="user-block">
-                                            <img class="img-circle img-bordered-sm" src="vistas/dist/images/user.png" alt="Imagen de usuario">
-                                            <span class="username">
-                                                <a href="#">titulo</a>
-                                                <p>Nombre Usuario</p>
-                                            </span>
-                                            <span class="description">Compartido públicamente - 15/09/2022</span>
-                                        </div>
-                                        <!-- /.user-block -->
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, iusto dolorum totam molestias necessitatibus cupiditate tempora, labore mollitia id deserunt inventore placeat saepe. Vel ipsum consequuntur esse ratione accusantium molestiae.
-                                        </p>
-
-                                    </div>
-
-                                    <div class="post clearfix">
-                                        <div class="user-block">
-                                            <img class="img-circle img-bordered-sm" src="vistas/dist/images/user.png" alt="Imagen de usuario">
-                                            <span class="username">
-                                                <a href="#">titulo</a>
-                                                <p>Nombre Usuario</p>
-                                            </span>
-                                            <span class="description">Compartido públicamente - 15/09/2022</span>
-                                        </div>
-                                        <!-- /.user-block -->
-                                        <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam, iusto dolorum totam molestias necessitatibus cupiditate tempora, labore mollitia id deserunt inventore placeat saepe. Vel ipsum consequuntur esse ratione accusantium molestiae.
-                                        </p>
-
-                                    </div>
-
-
-
+                               
+                                <?php endforeach; ?>
 
                                 </div>
 
@@ -95,12 +62,12 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <a class="btn btn-primary btn-block" href="pregunta.html">
+                            <a class="btn btn-primary btn-block" href="<?= $_ENV['BASE_URL'] ?>pregunta">
                                 Preguntar
                             </a>
 
 
-                            <a class="btn btn-primary btn-block" href="login.html">
+                            <a class="btn btn-primary btn-block" href="<?= $_ENV['BASE_URL'] ?>login">
                                 Regístrese o inicie sesión para preguntar
                             </a>
 

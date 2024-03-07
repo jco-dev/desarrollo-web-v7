@@ -31,16 +31,16 @@
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <li class="nav-item dropdown"></li>
 
-            <a href="login.html" class="btn btn-outline-primary btn-sm">
+            <a href="<?= $_ENV['BASE_URL']?>login" class="btn btn-outline-primary btn-sm">
                 Iniciar sesión
             </a>
-            <a href="registro.html" class="btn btn-primary btn-sm ml-1">Regístrate</a>
+            <a href="<?= $_ENV['BASE_URL']?>registro" class="btn btn-primary btn-sm ml-1">Regístrate</a>
 
 
             <div class="image">
-                <img src="vistas/dist/images/user.png" class="img-circle" width="30" alt="Imagen de usuario">
+                <img src="<?= $_ENV['BASE_URL']?>vistas/dist/images/user.png" class="img-circle" width="30" alt="Imagen de usuario">
             </div>
-            Carlos Perez
+            <?= $_SESSION['nombre'] . ' '. $_SESSION['paterno']?>
             <a href="salir" class="btn btn-outline-danger ml-1 btn-sm">
                 salir
             </a>

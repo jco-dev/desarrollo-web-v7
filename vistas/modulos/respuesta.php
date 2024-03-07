@@ -1,3 +1,11 @@
+<?php
+
+    $pregunta = Pregunta::listarPreguntas('pregunta', 'id_pregunta',  explode('/', $_GET['ruta'])[1]);
+
+    $respuestas = Respuesta::listarRespuestas('respuesta', 'id_pregunta', explode('/', $_GET['ruta'])[1]);
+
+?>
+
 <div class="content-wrapper">
     <div class="content-header">
         <div class="container">
@@ -27,58 +35,61 @@
 
                                     <div class="post">
                                         <div class="user-block">
-                                            <img class="img-circle img-bordered-sm" src="/vistas/dist/images/user.png" width="128px" alt="user image ">
+                                            <img class="img-circle img-bordered-sm" src="<?= $_ENV['BASE_URL']?>vistas/dist/images/user.png" width="128px" alt="user image ">
                                             <span class="username">
-                                                <a href="#">Erro 500 que significa</a>
-                                                <p>Pedro Lopez</p>
+                                                <p><?= $pregunta['titulo']?></p>
+                                                <p><?= $pregunta['nombre'] ." ". $pregunta['paterno']?></p>
                                             </span>
-                                            <span class="description">Compartido públicamente -
-                                                15/12/2021 </span>
+                                            <span class="description">Compartido públicamente - 15/12/2021 </span>
                                         </div>
-                                        <!-- /.user-block -->
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quas veritatis eum molestias assumenda cupiditate similique exercitationem? Ullam voluptatum nesciunt iusto quod iste, nulla, aliquam alias, id temporibus tenetur eligendi!
+                                        <?= $pregunta['descripcion']?>
                                         </p>
-                                        <img class="img-fluid pad" src="" alt="Photo">
+                                        <img class="img-fluid pad" src="<?=$_ENV['BASE_URL'] .  $pregunta['imagen'] ?>" alt="<?= $pregunta['titulo']?>">
 
                                     </div>
                                     <!-- /.post -->
 
                                     <!-- Respuestas -->
 
-
-                                    <h3> 5 Respuestas</h3>
+                                    <?php if(count($respuestas) > 0): ?>
+                                    <h3> <?= count($respuestas) ?>   Respuesta<?=(count($respuestas))> 1? 's': ''?> </h3>
                                     <hr>
+
+                                    <?php foreach ($respuestas as $key => $respuesta): ?>
                                     <div class="post clearfix">
                                         <!-- /.user-block -->
+                                        <p><strong>Respuesta: <?= ($key + 1)?></strong></p>
                                         <p>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere numquam ipsa, rerum, quo porro error eius quis itaque ea autem illum nihil aliquam suscipit accusantium? Incidunt vel fuga totam blanditiis.
+                                        <?= $pregunta['descripcion']?>
                                         </p>
 
+                                        <?php if($respuesta['imagen'] != ""): ?>
                                         <div class="border float-right ml-5 p-1  mb-2">
-                                            <img class="img-fluid pad" src="" alt="respuesta">
+                                            <img class="img-fluid pad" src="<?= $_ENV['BASE_URL'] . $respuesta['imagen']?>" alt="Imagen de la respuesta">
                                         </div>
+                                        <?php endif; ?>
 
                                         <div class="row d-flex justify-content-end">
                                             <div class="col-md-6">
-                                                <!-- <p class="float-left ml-2">
-                                                            <a href="# " class="link-black text-primary">
-                                                                <i class="fa fa-thumbs-up mr-1"></i> </a>
-                                                            10 Like
-                                                        </p> -->
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="user-block">
-                                                    <img class="img-circle img-bordered-sm" src="vistas/dist/images/user.png" alt="User Image" />
+                                                    <img class="img-circle img-bordered-sm" src="<?= $_ENV['BASE_URL']?>vistas/dist/images/user.png" alt="User Image" />
                                                     <span class="username">
                                                         /<small class="text-sm text-muted">Respondido el 15/07/2022 por:</small>/
-                                                        <p>Pablo Marmol</p>
+                                                        <p><?= $respuesta['nombre'] . " ". $respuesta['paterno']?></p>
                                                     </span>
 
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <?php endforeach;?>
+                                    <?php else: ?>
+                                    <h3> No hay respuestas</h3>
+                                    <?php endif; ?>
 
 
                                     <div class="card card-primary card-outline">
@@ -90,8 +101,8 @@
                                             <div class="card-body">
                                                 <h5>Escribe tu respuesta:</h5>
                                                 <div class="form-group">
-                                                    <input type="hidden" name="id_pregunta" id="id_pregunta" value="<?= $id_pregunta ?>">
-                                                    <textarea name="descripcion_respuesta" id="descripcion_respuesta" class="form-control" rows="5" required></textarea>
+                                                    <input type="hidden" name="id_pregunta" id="id_pregunta" value="<?= explode('/', $_GET['ruta'])[1] ?>">
+                                                    <textarea name="descripcion" id="descripcion" class="form-control" rows="5" required></textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="btn btn-default btn-file">
@@ -107,6 +118,12 @@
                                                 </div>
                                             </div>
                                             <!-- /.card-footer -->
+
+                                            <?php
+                                                $respuesta = new Respuesta();
+                                                $respuesta->guardarRespuesta();
+
+                                            ?>
 
                                         </form>
                                     </div>

@@ -1,11 +1,14 @@
 <?php
 
+session_start();
+
 $rutas = ['login', 'perfil', 'pregunta', 'preguntas', 'registro', 'respuesta', 'salir', 'usuarios'];
 
 $ruta = 'preguntas';
 
 if (isset($_GET['ruta'])) {
-  $ruta = $_GET['ruta'];
+  $ruta = explode('/', $_GET['ruta']);
+  $ruta = $ruta[0];
 }
 
 
@@ -26,14 +29,14 @@ if ($ruta == 'login' || $ruta == 'registro')
   <title>Consultas | Posgrado</title>
   <!-- CSS -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback" />
-  <link rel="stylesheet" href="vistas/plugins/fontawesome-free/css/all.min.css" />
-  <link rel="stylesheet" href="vistas/dist/css/adminlte.min.css" />
+  <link rel="stylesheet" href="<?= $_ENV['BASE_URL']?>vistas/plugins/fontawesome-free/css/all.min.css" />
+  <link rel="stylesheet" href="<?= $_ENV['BASE_URL']?>vistas/dist/css/adminlte.min.css" />
   <!-- SCRIPTS    -->
-  <script src="vistas/plugins/jquery/jquery.min.js"></script>
+  <script src="<?= $_ENV['BASE_URL']?>vistas/plugins/jquery/jquery.min.js"></script>
   <!-- Boostrap v 4.6 -->
-  <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= $_ENV['BASE_URL']?>vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- adminlte 3.0.1 -->
-  <script src="vistas/dist/js/adminlte.min.js"></script>
+  <script src="<?= $_ENV['BASE_URL']?>vistas/dist/js/adminlte.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
