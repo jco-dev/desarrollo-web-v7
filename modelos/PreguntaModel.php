@@ -31,4 +31,16 @@ class PreguntaModel{
         return $stmt->execute();
     }
 
+
+    static public function listarPreguntasUsuario()
+    {
+        $stmt = Conexion::conectar()->prepare("select 
+        p.*,
+        (select count(*) from respuesta r where r.id_pregunta=p.id_pregunta) as cantidad
+    from pregunta p where id_usuario = :id_usuario order by p.id_pregunta desc");
+        $stmt->bindParam(':id_usuario', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }

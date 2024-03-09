@@ -26,4 +26,12 @@ class RespuestaModel{
         }
     }
 
+    static public function listarRespuestasUsuario()
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * from respuesta where id_usuario = :id_usuario");
+        $stmt->bindParam(':id_usuario', $_SESSION['id'], PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
 }

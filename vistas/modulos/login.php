@@ -37,6 +37,11 @@
                     </div>
                 </div>
 
+                <?php
+                    $login = new Usuario();
+                    $login->loginUsuario();
+                ?>
+
             </form>
 
             <p class="mb-1 mt-4 text-center">

@@ -15,9 +15,18 @@
                 <li class="nav-item">
                     <a href="/" class="nav-link">Inicio</a>
                 </li>
+
+                <?php if( isset($_SESSION['id']) ):?>
                 <li class="nav-item">
-                    <a href="perfil.html" class="nav-link">Perfil</a>
+                    <a href="<?= $_ENV['BASE_URL']?>perfil" class="nav-link">Perfil</a>
                 </li>
+                <?php endif; ?>
+
+                <?php if( isset($_SESSION['id']) && $_SESSION['rol'] == 'admin'):?>
+                <li class="nav-item">
+                    <a href="<?= $_ENV['BASE_URL']?>usuarios" class="nav-link">Usuarios</a>
+                </li>
+                <?php endif; ?>
 
 
                 <li class="nav-item">
@@ -31,19 +40,24 @@
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
             <li class="nav-item dropdown"></li>
 
+            <?php if(!isset($_SESSION['id'])): ?>
             <a href="<?= $_ENV['BASE_URL']?>login" class="btn btn-outline-primary btn-sm">
                 Iniciar sesión
             </a>
             <a href="<?= $_ENV['BASE_URL']?>registro" class="btn btn-primary btn-sm ml-1">Regístrate</a>
 
+            <?php else: ?>
 
             <div class="image">
                 <img src="<?= $_ENV['BASE_URL']?>vistas/dist/images/user.png" class="img-circle" width="30" alt="Imagen de usuario">
             </div>
+
             <?= $_SESSION['nombre'] . ' '. $_SESSION['paterno']?>
+
             <a href="salir" class="btn btn-outline-danger ml-1 btn-sm">
                 salir
             </a>
+            <?php endif; ?>
 
 
         </ul>

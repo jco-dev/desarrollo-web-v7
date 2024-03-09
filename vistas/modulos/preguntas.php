@@ -62,14 +62,16 @@
                     <div class="card">
                         <div class="card-body">
 
+                        <?php if(isset($_SESSION['id'])): ?>
                             <a class="btn btn-primary btn-block" href="<?= $_ENV['BASE_URL'] ?>pregunta">
                                 Preguntar
                             </a>
 
-
+                        <?php else: ?>
                             <a class="btn btn-primary btn-block" href="<?= $_ENV['BASE_URL'] ?>login">
                                 Regístrese o inicie sesión para preguntar
                             </a>
+                        <?php endif; ?>
 
                         </div>
                     </div>

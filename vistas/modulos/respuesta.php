@@ -88,10 +88,11 @@
 
                                     <?php endforeach;?>
                                     <?php else: ?>
-                                    <h3> No hay respuestas</h3>
+                                    <h5> No hay respuestas</h5>
                                     <?php endif; ?>
 
 
+                                    <?php if(isset($_SESSION['id']) ): ?>
                                     <div class="card card-primary card-outline">
                                         <div class="card-header">
                                             <h3 class="card-title">Tu respuesta</h3>
@@ -127,6 +128,7 @@
 
                                         </form>
                                     </div>
+                                    <?php endif; ?>
 
                                 </div>
                             </div>

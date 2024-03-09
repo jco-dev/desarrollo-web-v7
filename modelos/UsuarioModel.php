@@ -44,4 +44,19 @@ class UsuarioModel{
     return $stmt->fetch();
    }
 
+   static public function obtenerUsuario($usuario)
+   {
+     $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE usuario = :usuario");
+     $stmt->bindParam(':usuario', $usuario, PDO::PARAM_STR);
+     $stmt->execute();
+     return $stmt->fetch();
+   }
+
+   static public function listarUsuarios()
+   {
+     $stmt = Conexion::conectar()->prepare("SELECT * FROM persona p INNER JOIN usuario u ON p.id_persona = u.id_usuario");
+     $stmt->execute();
+     return $stmt->fetchAll();
+   }
+
 }

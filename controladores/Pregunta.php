@@ -22,7 +22,7 @@ class Pregunta {
                         'titulo'        => $titulo,
                         'descripcion'   => $descripcion,
                         'imagen'        => $archivo,
-                        'id_usuario'    => 1
+                        'id_usuario'    => $_SESSION['id']
                     ];
                     $respuesta = PreguntaModel::guardar('pregunta', $datos);
 
@@ -57,6 +57,10 @@ class Pregunta {
 
     static private function validarEntrada($input){
         return preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓ¡Ú¿?!,. ]+$/', $input);
+    }
+
+    static public function listarPreguntasUsuario(){
+        return PreguntaModel::listarPreguntasUsuario();
     }
 
 }

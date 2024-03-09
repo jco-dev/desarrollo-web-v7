@@ -31,6 +31,8 @@ class Usuario {
                         $persona = UsuarioModel::obtenerPersona('persona', $id_persona);
                         self::iniciarSesion($persona);
                     }
+
+                    // header('Location: /login');
                     
                 }
 
@@ -46,9 +48,45 @@ class Usuario {
         $_SESSION['nombre'] = $persona['nombre'];
         $_SESSION['paterno'] = $persona['paterno'];
         $_SESSION['materno'] = $persona['materno'];
+        $_SESSION['usuario'] = $persona['usuario'];
         $_SESSION['rol'] = $persona['rol'];
 
         echo "<script>window.location = '".$_ENV['BASE_URL']."';</script>";
+    }
+
+
+    static public function loginUsuario()
+    {
+        if(isset($_POST['usuario']) && isset($_POST['clave']) )
+        {
+
+            $usuario = UsuarioModel::obtenerUsuario(trim($_POST['usuario']));
+
+            if($usuario){
+                if(password_verify($_POST['clave'], $usuario['clave'])){
+                    $persona = UsuarioModel::obtenerPersona('persona', $usuario['id_usuario']);
+                    self::iniciarSesion($persona);
+                }else{
+                    echo "<div class='alert alert-danger mt-2'>
+                        Usuario no encontrado
+                    </div>";
+                }
+
+            }else{
+                echo "<div class='alert alert-danger mt-2'>
+                    Usuario no encontrado
+                </div>";
+            }
+
+
+        }
+    }
+
+    static public function listarUsuarios()
+    {
+      
+        $usuarios = UsuarioModel::listarUsuarios();
+        return $usuarios;
     }
 
 }

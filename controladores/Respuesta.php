@@ -25,7 +25,7 @@ class Respuesta {
 
                 $datos = [
                     'descripcion'   => $descripcion,
-                    'id_usuario'    => 1,
+                    'id_usuario'    => $_SESSION['id'],
                     'id_pregunta'   => $_POST['id_pregunta'],
                     'imagen'        => $ruta
                 ];
@@ -59,6 +59,11 @@ class Respuesta {
 
     static private function validarEntrada($input){
         return preg_match('/^[a-zA-Z0-9ñÑáéíóúÁÉÍÓ¡Ú¿?!,. ]+$/', $input);
+    }
+
+    static public function listarRespuestasUsuario()
+    {
+        return RespuestaModel::listarRespuestasUsuario();
     }
 
 }
