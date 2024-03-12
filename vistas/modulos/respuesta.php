@@ -40,7 +40,7 @@
                                                 <p><?= $pregunta['titulo']?></p>
                                                 <p><?= $pregunta['nombre'] ." ". $pregunta['paterno']?></p>
                                             </span>
-                                            <span class="description">Compartido públicamente - 15/12/2021 </span>
+                                            <span class="description">Compartido públicamente - <?= $pregunta['fecha_registro'] ?> </span>
                                         </div>
                                         <p>
                                         <?= $pregunta['descripcion']?>
@@ -77,7 +77,7 @@
                                                 <div class="user-block">
                                                     <img class="img-circle img-bordered-sm" src="<?= $_ENV['BASE_URL']?>vistas/dist/images/user.png" alt="User Image" />
                                                     <span class="username">
-                                                        /<small class="text-sm text-muted">Respondido el 15/07/2022 por:</small>/
+                                                        <small class="text-sm text-muted">Respondido <?= $pregunta['fecha_registro'] ?> por:</small>
                                                         <p><?= $respuesta['nombre'] . " ". $respuesta['paterno']?></p>
                                                     </span>
 

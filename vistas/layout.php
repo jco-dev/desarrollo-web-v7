@@ -51,6 +51,7 @@ if ($ruta == 'login' || $ruta == 'registro')
   <?php
 
   if (in_array($ruta, $rutas)) {
+    
     include_once "modulos/$ruta.php";
   } else {
     include_once "modulos/404.php";

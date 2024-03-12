@@ -78,7 +78,7 @@ $respuestas = Respuesta::listarRespuestasUsuario();
                                 <span class="username">
                                     <a href="<?= $_ENV['BASE_URL']?>respuesta/<?= $pregunta['id_pregunta'] ?>"><?= $pregunta['titulo'] ?></a>
                                 </span>
-                                <span class="description">Shared publicly - 7:30 PM today</span>
+                                <span class="description">Publicado - <?= $pregunta['fecha_registro'] ?></span>
                             </div>
                             <!-- /.user-block -->
                             <p>

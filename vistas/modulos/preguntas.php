@@ -37,7 +37,7 @@
                                                 <a href="<?= $_ENV['BASE_URL']?>respuesta/<?= $pregunta['id_pregunta'] ?>"><?= $pregunta['titulo'] ?></a>
                                                 <p><?= $pregunta['nombre'] . " ". $pregunta['paterno'] ?></p>
                                             </span>
-                                            <span class="description">Compartido públicamente - 15/09/2022</span>
+                                            <span class="description">Publicado - <?= $pregunta['fecha_registro'] ?></span>
                                         </div>
                                         <!-- /.user-block -->
                                         <p>
